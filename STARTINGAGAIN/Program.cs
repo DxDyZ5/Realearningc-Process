@@ -1,61 +1,122 @@
-﻿//Assigning value if it's valid with the line: - double.TryParse(Console.ReadLine(), out length - 
+﻿using System;
+using System.Reflection.Metadata;
 
-//Logic behind the!(negating this statement: double.TryParse(Console.ReadLine(), out length) If the tryparse is successful, then it will give true.By using
-
-/*
- Logic behind the ! (negating this statement: double.TryParse(Console.ReadLine(), out length) 
-    If the TryParse is successful, then it will be true. By using !, we are stoping the loop by negating the statement,we declare the value false. So value is successful for our program.
-    In the other hand if the value it is not successful it will be false. We don't want that, because it will stop the loop when the value hasn't been assigned. by negating the statement,we declare the value true. Letting the loop continue.
-    In this case if what we explained before happen, it won't stop the loop because we have another logic nested into the while statement: | length <= 0.
-    the operator | (or) help to give logic of even though the left hand stament is false, the right hand stament still true, so the 'while' still running.
-    the difference between || (or) and | (or):
-
-    The conditional logical OR operator || also computes the logical OR of its operands, but doesn't evaluate the right-hand operand if the left-hand operand evaluates to true.
-according to this, if the right hand statement is true the other won't be evaluate or include it. 
- */
-
-
-using System;
-
-namespace  startingAgain 
+namespace startingAgain
 {
     class Program
     {
         static void Main(string[] args)
         {
-            // Greetings 
-            Console.WriteLine("Welcome. This a program to calculate the area of a rectangule");
 
-            // Asking for the lenght value 
-            Console.Write("Please, enter the length of the rectangule: ");
-            double length;
+            //Needy program variables.
+            const int pin = 3410;
+            double balance = 0;
+            double amount;
 
-            //validating the input of length
-            while (!double.TryParse(Console.ReadLine(), out length) | length <= 0)
+            // A friendly greetings to our bank.
+            Console.WriteLine(@"
+ ________  ___  ___  ________          ________  _________  _____ ______          
+|\   __  \|\  \|\  \|\   ___ \        |\   __  \|\___   ___\\   _ \  _   \        
+\ \  \|\ /\ \  \\\  \ \  \_|\ \       \ \  \|\  \|___ \  \_\ \  \\\__\ \  \       
+ \ \   __  \ \   __  \ \  \ \\ \       \ \   __  \   \ \  \ \ \  \\|__| \  \      
+  \ \  \|\  \ \  \ \  \ \  \_\\ \       \ \  \ \  \   \ \  \ \ \  \    \ \  \     
+   \ \_______\ \__\ \__\ \_______\       \ \__\ \__\   \ \__\ \ \__\    \ \__\    
+    \|_______|\|__|\|__|\|_______|        \|__|\|__|    \|__|  \|__|     \|__|    
+                                                                                  
+                                                                                                                                                                
+ ~ your favorite ATM nearby you.");
+
+            // asking for the pin
+            Console.Write("To proceed, please enter your pin: ");
+            int prompt;
+
+
+            //validating the input
+            while (!int.TryParse(Console.ReadLine(), out prompt) | prompt <= 0)
             {
-
-                Console.WriteLine("Invalid input (value should be either positive or more than zero)");
-                Console.Write("Please, enter the length of the rentangule: ");
+                Console.WriteLine("Please, enter a valid input");
+                Console.Write("To proceed, please enter your pin: ");
             }
 
-            //width value
-            Console.Write("Please, enter the width of the rentangule: ");
-            double width;
 
-            //validating the input of width 
-            while (!double.TryParse(Console.ReadLine(), out width) | width <= 0)
+            //Checking if the prompt match the pin
+            if (prompt == pin)
             {
+                //Declaring a empty string variable for the do while. Keeping the loop until the user decide to move on.
+                string continueon = string.Empty;
+
+                do
+                {
+                    //principal menu
+                    Console.WriteLine(@"
+                       Welcome!
+                    1. withdraw
+                    2. deposit
+                    3. check balance
+");
+                    Console.Write("Please, choose an option: ");
+                    int option;
+
+                    //validating if user input a option from the menu
+                    while (!int.TryParse(Console.ReadLine(), out option) | option <= 0 | option > 3)
+                    {
+                        Console.WriteLine("Please, enter a valid input");
+                        Console.Write("Please, choose an option from the menu: ");
+                    }
 
 
-                Console.WriteLine("Invalid input (value should be either positive or more than zero)");
-                Console.Write("Please, enter the width of the rentangule: ");
+                    //checking option with switch and therefore do the chosen action.
+                    switch (option)
+                    {
+                        case 1:
+                            Console.Write("Enter an amount: ");
+                            double.TryParse(Console.ReadLine(), out amount);
+
+                            //checking if balance is different to zero or if balance is greater than the amount, for therefore withdraw.
+                            if (balance > amount & amount > 0)
+                            {
+                                balance -= amount;
+                            }
+                            else
+                            {
+                                Console.WriteLine("There isn't enough balance");
+                            }
+
+                            break;
+                        case 2:
+                            Console.Write("Enter an amount: ");
+                            double.TryParse(Console.ReadLine(), out amount);
+                            if (amount > 0)
+                            {
+                                balance += amount;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Value should be greater than zero");
+                            }
+
+                            break;
+                        case 3:
+                            Console.WriteLine($"Balance: {balance}");
+                            break;
+                        default:
+                            break;
+                    }
+                    //asking whether want to continue or not. Reading the input and converting the input to lowerCase.
+                    Console.Write("Do you want to continue (y/n): ");
+                    continueon = Console.ReadLine().Trim().ToLower();
+
+
+                }
+                //represent a boolean statement with a string variable.
+                while (continueon != "n");
             }
-            //formula: area of rectangule
-            double area = width * length;
-
-            //result
-            Console.WriteLine($"The area of rectangule given the width and length it's: {area}");
-
+            else
+            {
+                Console.WriteLine("Pin doesn't match, try again.");
+                //getting back if the ping doesn't match.
+                Main(args);
+            }
         }
     }
 }
