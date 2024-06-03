@@ -14,7 +14,7 @@
 according to this, if the right hand statement is true the other won't be evaluate or include it. 
  */
 
-
+//We use decimal because the precision it's 28-29 digits past the decimal. So since when we are doing mathematical operation we don't know the number past the decimal.
 using System;
 
 namespace  startingAgain 
@@ -28,10 +28,10 @@ namespace  startingAgain
 
             // Asking for the lenght value 
             Console.Write("Please, enter the length of the rectangule: ");
-            double length;
+            decimal length;
 
             //validating the input of length
-            while (!double.TryParse(Console.ReadLine(), out length) | length <= 0)
+            while (!decimal.TryParse(Console.ReadLine(), out length) | length <= 0)
             {
 
                 Console.WriteLine("Invalid input (value should be either positive or more than zero)");
@@ -40,10 +40,10 @@ namespace  startingAgain
 
             //width value
             Console.Write("Please, enter the width of the rentangule: ");
-            double width;
+            decimal width;
 
             //validating the input of width 
-            while (!double.TryParse(Console.ReadLine(), out width) | width <= 0)
+            while (!decimal.TryParse(Console.ReadLine(), out width) | width <= 0)
             {
 
 
@@ -51,7 +51,7 @@ namespace  startingAgain
                 Console.Write("Please, enter the width of the rentangule: ");
             }
             //formula: area of rectangule
-            double area = width * length;
+            decimal area = width * length;
 
             //result
             Console.WriteLine($"The area of rectangule given the width and length it's: {area}");
