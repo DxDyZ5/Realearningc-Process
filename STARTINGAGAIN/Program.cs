@@ -64,6 +64,27 @@ namespace startingAgain
 }
 
 
+Explanation of Changes:
+Edge Case Handling:
+
+Added checks to handle cases where the number of terms requested is 1 or 2. This ensures the program outputs correctly without unnecessary computation.
+Variable Naming:
+
+Changed sumFibnonnaci to nextValue for clarity.
+Changed firstValue and secondValue updates to use the calculated nextValue.
+Code Readability:
+
+Added comments to explain the purpose of each section of the code.
+Efficient Calculation:
+
+The variables firstValue and secondValue are updated in each iteration without accessing the list, making the calculation slightly more efficient.
+Running the Program:
+The user is prompted to enter the number of terms for the Fibonacci sequence.
+The program validates the input to ensure it's a positive integer.
+It then generates the Fibonacci sequence up to the specified number of terms using a while loop.
+Finally, the sequence is printed to the console.
+This should make your program more robust and readable, while still achieving the desired functionality.
+
  */
 
 using System;
