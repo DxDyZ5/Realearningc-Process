@@ -1,4 +1,160 @@
-﻿using System;
+﻿/*
+  Improvements from chatgpt
+ using System;
+
+namespace startingAgain
+{
+ class Program
+ {
+     const int pin = 3410;
+     static double balance = 0;
+
+     static void Main(string[] args)
+     {
+         Console.WriteLine(@"
+________  ___  ___  ________          ________  _________  _____ ______          
+|\   __  \|\  \|\  \|\   ___ \        |\   __  \|\___   ___\\   _ \  _   \        
+\ \  \|\ /\ \  \\\  \ \  \_|\ \       \ \  \|\  \|___ \  \_\ \  \\\__\ \  \       
+\ \   __  \ \   __  \ \  \ \\ \       \ \   __  \   \ \  \ \ \  \\|__| \  \      
+\ \  \|\  \ \  \ \  \ \  \_\\ \       \ \  \ \  \   \ \  \ \ \  \    \ \  \     
+\ \_______\ \__\ \__\ \_______\       \ \__\ \__\   \ \__\ \ \__\    \ \__\    
+ \|_______|\|__|\|__|\|_______|        \|__|\|__|    \|__|  \|__|     \|__|    
+
+~ your favorite ATM nearby you.");
+
+         PromptForPin();
+     }
+
+     static void PromptForPin()
+     {
+         int attempts = 0;
+         const int maxAttempts = 3;
+         while (attempts < maxAttempts)
+         {
+             Console.Write("To proceed, please enter your pin: ");
+             if (int.TryParse(Console.ReadLine(), out int enteredPin) && enteredPin == pin)
+             {
+                 ShowMenu();
+                 return;
+             }
+             else
+             {
+                 attempts++;
+                 Console.WriteLine("Incorrect PIN. Please try again.");
+             }
+         }
+         Console.WriteLine("Too many incorrect attempts. Exiting.");
+     }
+
+     static void ShowMenu()
+     {
+         string continueOn;
+         do
+         {
+             Console.WriteLine(@"
+                    Welcome!
+                 1. Withdraw
+                 2. Deposit
+                 3. Check Balance
+             ");
+             Console.Write("Please, choose an option: ");
+             int option;
+             while (!int.TryParse(Console.ReadLine(), out option) || option < 1 || option > 3)
+             {
+                 Console.WriteLine("Invalid input. Please choose a valid option.");
+                 Console.Write("Please, choose an option: ");
+             }
+
+             switch (option)
+             {
+                 case 1:
+                     Withdraw();
+                     break;
+                 case 2:
+                     Deposit();
+                     break;
+                 case 3:
+                     CheckBalance();
+                     break;
+             }
+
+             Console.Write("Do you want to continue (y/n): ");
+             continueOn = Console.ReadLine().Trim().ToLower();
+         }
+         while (continueOn != "n");
+     }
+
+     static void Withdraw()
+     {
+         Console.Write("Enter an amount to withdraw: ");
+         if (double.TryParse(Console.ReadLine(), out double amount) && amount > 0)
+         {
+             if (balance >= amount)
+             {
+                 balance -= amount;
+                 Console.WriteLine($"Withdrawal successful. New balance: {balance}");
+             }
+             else
+             {
+                 Console.WriteLine("Insufficient balance.");
+             }
+         }
+         else
+         {
+             Console.WriteLine("Invalid amount. Please enter a positive number.");
+         }
+     }
+
+     static void Deposit()
+     {
+         Console.Write("Enter an amount to deposit: ");
+         if (double.TryParse(Console.ReadLine(), out double amount) && amount > 0)
+         {
+             balance += amount;
+             Console.WriteLine($"Deposit successful. New balance: {balance}");
+         }
+         else
+         {
+             Console.WriteLine("Invalid amount. Please enter a positive number.");
+         }
+     }
+
+     static void CheckBalance()
+     {
+         Console.WriteLine($"Your current balance is: {balance}");
+     }
+ }
+}
+
+
+
+comments:
+
+Explanation of Changes:
+Refactored Code:
+
+Created separate methods for PromptForPin, ShowMenu, Withdraw, Deposit, and CheckBalance to make the code more modular and easier to read.
+PromptForPin method now handles the PIN verification with a maximum of 3 attempts before exiting.
+Improved Input Validation:
+
+Enhanced the validation logic for both PIN entry and menu options to ensure valid inputs.
+Logical Operators:
+
+Used && for logical AND and || for logical OR to ensure proper logical operations.
+Loop for PIN Attempts:
+
+Added a loop in PromptForPin to allow the user to enter the PIN up to three times before exiting.
+Balance Operations:
+
+Validated the amounts for deposit and withdrawal to ensure they are positive and handled edge cases such as insufficient balance for withdrawals.
+User Feedback:
+
+Provided feedback messages for successful and failed operations to enhance user experience.
+This improved version ensures better structure, readability, and robustness in handling user input and ATM operations.
+
+  */
+
+using System;
 using System.Reflection.Metadata;
 
 namespace startingAgain
