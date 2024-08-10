@@ -12,19 +12,18 @@ namespace startingAgain
         
         static void Main(string[] args)
         {
-            validateInput();
+            validateYearInput();
 
            while (!(year > DateTime.MinValue.Year && year < DateTime.MaxValue.Year)) //Looping until the input is a valid year according to c# DateTime type.
            {
                 Console.WriteLine("Year is not valid. Try with any value greater than 0 and less than 9999");
-                validateInput();
+                validateYearInput();
            }
            IsLeapYearOrnot(year);
         }
             
-       
-        
-        static void validateInput() {
+
+        static void validateYearInput() {
             
             Console.Write("Please, enter a year: ");
             while (!int.TryParse(Console.ReadLine(), out year)) //Check if the variable year is a valid integer
