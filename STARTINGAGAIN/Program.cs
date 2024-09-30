@@ -10,16 +10,16 @@ namespace startingAgain
         {
             if (OperatingSystem.IsWindows())
             {
-                SoundPlayer player = new SoundPlayer("Shotgun Sound Effects.wav");
-                player.Load();
+                SoundPlayer BUM = new SoundPlayer("Shotgun Sound Effects.wav");
+                BUM.Load();
                 Console.WriteLine("SHOTGUN: ");
                 while (true)
                 {
-                    for (int i = 1; i > 0; i--)
+                    for (int i = 1; i > 0; i--) //One shot per load. Start in 1, it becomes 0 in the second loop.
                     {
-                        Console.WriteLine($"AMMO:{i} BUM!  " ); player.Play();
+                        Console.WriteLine($"BUM!  " ); BUM.Play();
                         Console.WriteLine("Reloading...");
-                        Thread.Sleep(1000);
+                        Thread.Sleep(2000);
                     }
                 }
                
